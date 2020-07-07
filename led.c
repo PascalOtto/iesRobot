@@ -1,4 +1,5 @@
 #include "led.h"
+#include <avr/io.h>
 
 #define DATA_DDR    DDRB
 #define DATA_PORT   PORTB
@@ -17,8 +18,22 @@ void led_init() {
     CLK_DDR  |= (1 << CLK_PIN);
 }
 
+void shiftValue(bool value) {
+    CLK_PORT &= ~(1 << CLK_PIN);
+    if(value == true) {
+        DATA_PORT |= (1 << DATA_PIN);
+    }
+    else {
+        DATA_PORT &= ~(1 << DATA_PIN);
+    }
+    CLK_PORT |= (1 << CLK_PIN);
+}
+
 void writeToShiftRegister() {
-    
+    shiftValue(false);
+    shiftValue(led_blue);
+    shiftValue(led_green);
+    shiftValue(led_yellow);
 }
 
 void led_set_blue(bool on) {
@@ -32,6 +47,6 @@ void led_set_yellow(bool on) {
 }
 
 void led_set_green(bool on) {
-    led_blue = on;
+    led_green = on;
     writeToShiftRegister();
 }

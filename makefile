@@ -1,6 +1,6 @@
 TARGET=iesrobot
 MCU=atmega328p
-SOURCES=blink.c
+SOURCES=blink.c led.c
 PROGRAMMER=arduino
 
 #auskommentieren für automatische Wahl
