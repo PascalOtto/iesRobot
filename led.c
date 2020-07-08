@@ -16,6 +16,9 @@ void led_init() {
     // Direction
     DATA_DDR |= (1 << DATA_PIN);
     CLK_DDR  |= (1 << CLK_PIN);
+    led_set_green(false);
+    led_set_yellow(false);
+    led_set_blue(false);
 }
 
 void shiftValue(bool value) {
@@ -30,7 +33,6 @@ void shiftValue(bool value) {
 }
 
 void writeToShiftRegister() {
-    shiftValue(false);
     shiftValue(led_blue);
     shiftValue(led_green);
     shiftValue(led_yellow);
