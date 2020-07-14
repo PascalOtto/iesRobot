@@ -1,6 +1,6 @@
 TARGET=iesrobot
 MCU=atmega328p
-SOURCES=blink.c led.c iesusart.c
+SOURCES=iesrobot.c led.c iesusart.c
 PROGRAMMER=arduino
 PORT=-PCOM4
 BAUD=-B115200
