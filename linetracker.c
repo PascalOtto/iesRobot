@@ -6,7 +6,7 @@
 // use 125 kH
 #define ADPS_SETTING 7
 
-uint16_t threshold[] = {512, 512, 512};
+uint16_t threshold[] = {512, 512, 700};
 
 void linetracker_init(void) {
     ADMUX   |= (REFS_SETTING << REFS0);
