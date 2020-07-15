@@ -14,9 +14,12 @@ int main(void)
         led_set_blue(true);
         char buffer [100];
         int i = 0;
-        while(USART_ReceiveByte() != '\n') {
+        char c = USART_ReceiveByte();
+        while(c != '\n') {
+            USART_TransmitByte((unsigned char)c);
             i++;
             led_set_yellow(true);
+            c = USART_ReceiveByte();
         }
         char str[12];
         sprintf(str, "%d", i);

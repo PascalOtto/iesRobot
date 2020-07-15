@@ -2,7 +2,7 @@ TARGET=iesrobot
 MCU=atmega328p
 SOURCES=iesrobot.c led.c iesusart.c
 PROGRAMMER=arduino
-PORT=-PCOM4
+PORT=-P/dev/ttyACM0
 BAUD=-B115200
 
 OBJECTS=$(SOURCES:.c=.o)
