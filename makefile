@@ -2,7 +2,8 @@ TARGET=iesrobot
 MCU=atmega328p
 SOURCES=iesrobot.c led.c iesusart.c linetracker.c
 PROGRAMMER=arduino
-PORT=-P/dev/ttyACM0
+#PORT=-P/dev/ttyACM0
+PORT=-PCOM4
 BAUD=-B115200
 
 OBJECTS=$(SOURCES:.c=.o)

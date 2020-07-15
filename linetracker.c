@@ -6,9 +6,7 @@
 // use 125 kH
 #define ADPS_SETTING 7
 
-#define MUXSENSOR1 0
-#define MUXSENSOR2 1
-#define MUXSENSOR3 2
+uint16_t threshold[] = {512, 512, 512};
 
 void linetracker_init(void) {
     ADMUX   |= (REFS_SETTING << REFS0);
@@ -16,14 +14,20 @@ void linetracker_init(void) {
     ADCSRA  |= ADPS_SETTING;
 }
 
-int linetracker_measure_wait() {
-    ADMUX   |= MUXSENSOR1;
-    ADCSRA  |= (1 << ADSC); // start measurement
+int linetracker_measure_wait(linetracker_Tracker tracker) {
+    ADMUX   = (ADMUX >> 4) << 4;    // clear MUX
+    ADMUX   |= tracker;             // set MUX
+    ADCSRA  |= (1 << ADSC);         // start measurement
     
     while((ADCSRA >> ADSC) & 1) {
         // wait
     }
     
     uint16_t readout = ADCW;
-    
+    return readout;
+}
+
+bool linetracker_is_triggered(linetracker_Tracker tracker) {
+    uint16_t readout = linetracker_measure_wait(tracker);
+    return readout >= threshold[tracker];
 }

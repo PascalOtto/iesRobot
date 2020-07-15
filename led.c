@@ -39,16 +39,25 @@ void writeToShiftRegister() {
 }
 
 void led_set_blue(bool on) {
+    bool changed = led_blue != on;
     led_blue = on;
-    writeToShiftRegister();
+    if(changed) {
+        writeToShiftRegister();
+    }
 }
 
 void led_set_yellow(bool on) {
+    bool changed = led_yellow != on;
     led_yellow = on;
-    writeToShiftRegister();
+    if(changed) {
+        writeToShiftRegister();
+    }
 }
 
 void led_set_green(bool on) {
+    bool changed = led_green != on;
     led_green = on;
-    writeToShiftRegister();
+    if(changed) {
+        writeToShiftRegister();
+    }
 }
