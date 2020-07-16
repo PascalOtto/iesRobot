@@ -27,12 +27,12 @@
 
 void motorcontrol_init(void) {
     // set data direction registers
-    UNK1_DDR |= (1 << UNK1_PIN);
-    UNK2_DDR |= (1 << UNK2_PIN);
-    UNK3_DDR |= (1 << UNK3_PIN);
-    UNK4_DDR |= (1 << UNK4_PIN);
-    UNK5_DDR |= (1 << UNK5_PIN);
-    UNK6_DDR |= (1 << UNK6_PIN);
+    LEFT_EN_DDR     |= (1 << LEFT_EN_PIN);
+    RIGHT_EN_DDR    |= (1 << RIGHT_EN_PIN);
+    LEFT_FW_DDR     |= (1 << LEFT_FW_PIN);
+    LEFT_BW_DDR     |= (1 << LEFT_BW_PIN);
+    RIGHT_FW_DDR    |= (1 << RIGHT_FW_PIN);
+    RIGHT_BW_DDR    |= (1 << RIGHT_BW_PIN);
 }
 
 void motorcontrol_enable(bool enable) {
@@ -49,20 +49,20 @@ void motorcontrol_enable(bool enable) {
 void motorcontrol_drive(motorcontrol_direction left, motorcontrol_direction right) {
     LEFT_BW_PORT &= ~(1 << LEFT_BW_PIN);
     LEFT_FW_PORT &= ~(1 << LEFT_FW_PIN);
-    LEFT_BW_PORT &= ~(1 << LEFT_BW_PIN);
-    LEFT_FW_PORT &= ~(1 << LEFT_FW_PIN);
+    RIGHT_BW_PORT &= ~(1 << RIGHT_BW_PIN);
+    RIGHT_FW_PORT &= ~(1 << RIGHT_FW_PIN);
     
     if(left == FORWARD) {
         LEFT_FW_PORT |= (1 << LEFT_FW_PIN);
     }
-    else if(left == BACKWARDS) {
+    else if(left == BACKWARD) {
         LEFT_BW_PORT |= (1 << LEFT_BW_PIN);
     }
     
     if(right == FORWARD) {
         RIGHT_FW_PORT |= (1 << RIGHT_FW_PIN);
     }
-    else if(right == BACKWARDS) {
+    else if(right == BACKWARD) {
         RIGHT_BW_PORT |= (1 << RIGHT_BW_PIN);
     }
 }

@@ -1,4 +1,7 @@
 #include "linetracker.h"
+#include "iesusart.h"
+#include <stdio.h>
+#include <string.h>
 #include <avr/io.h>
 
 // AVCC as reference
@@ -6,7 +9,8 @@
 // use 125 kH
 #define ADPS_SETTING 7
 
-uint16_t threshold[] = {512, 512, 700};
+// right mid left
+uint16_t threshold[] = {600, 200, 200};
 
 void linetracker_init(void) {
     ADMUX   |= (REFS_SETTING << REFS0);

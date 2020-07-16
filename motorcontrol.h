@@ -2,7 +2,7 @@
 
 #include <stdbool.h>
 
-typedef enum {STOP, FORWARD, BACKWARDS} motorcontrol_direction;
+typedef enum {STOP, FORWARD, BACKWARD} motorcontrol_direction;
 
 void motorcontrol_init(void);
 void motorcontrol_enable(bool enable);
